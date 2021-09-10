@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'Slash someone!!',
             category: 'fun',
             usage: `${client.config.prefix}slash @whom_you_wanna_slash`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
