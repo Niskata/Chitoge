@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'Choke someone!!',
             category: 'fun',
             usage: `${client.config.prefix}choke @whom_you_wanna_choke`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
