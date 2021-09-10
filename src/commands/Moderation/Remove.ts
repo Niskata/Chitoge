@@ -24,7 +24,7 @@ export default class Command extends BaseCommand {
         M.mentioned.forEach(async (user) => {
             const usr = this.client.contacts[user]
             const username = usr.notify || usr.vname || usr.name || user.split('@')[0]
-            if (M.groupMetadata?.admins?.includes(user)) M.reply(`❌ Skipped *${username}* as they're an admin`)
+            if (M.groupMetadata?.admins?.includes(user)) M.reply(`✖ Skipped *${username}* as they're an admin`)
             else {
                 await this.client.groupRemove(M.from, [user])
                 M.reply(`🏌️‍♂️Successfully Removed *${username}*`)
