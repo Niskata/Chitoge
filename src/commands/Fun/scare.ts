@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'Scare someone!!',
             category: 'fun',
             usage: `${client.config.prefix}scare @whom_you_wanna_scare`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
