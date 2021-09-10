@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'You\'re in love',
             category: 'fun',
             usage: `${client.config.prefix}in-love-with @whom_you_you're_in-love-with`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
