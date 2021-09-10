@@ -1,75 +1,71 @@
-|Admin| usage | 
+|Admin| utilizzo | 
 |------|--------| 
-|Promote |  Makes user admin      | 
-|Demote |Removes user adminship  |
-| Remove | remove user |  
+|Promuovi |  Promuove un utente ad admin      | 
+|Demote |Rimuove il ruolo di admin da un utente  |
+| Remove | Rimuove un utente |  
 
-|Media| usage | 
+|Media| utilizzo | 
 |----|--------| 
-|Spotify|  Downloads songs from Spotify| 
-|YouTube video |Downloads video from YouTube| 
-|YouTube audio| Downloads audio from YouTube|  |Utils| usage | |-----|--------| |Sticker|  Contains sticker related Coomands |  #### Send hi to see if the bot is on or not.
+|Spotify|  Scarica canzoni da Spotify| 
+|YouTube video |Scarica video da YouTube| 
+|YouTube audio| Scarica audio da YouTube|  |Utils| utilizzo | |-----|--------| |Sticker|  Contiene comandi relativi agli sticker |  #### Send hi to see if the bot is on or not.
 
-|General| usage |
+|Generali| utilizzo |
 |----|--------|
-|Admins| Tags all the admins in a given group|
-|Everyone| Tags all participants of the given group, usable only by admins|
-|Help| Displays all the available commands of bot in the group|
-|Mods| Displays the moderator's contact info|
-|Profile| Displays a generated profile of the tagged/mentioned user|
-|Xp| Views the tagged user's xp|
+|Admins| Tagga gli admin di un gruppo|
+|Tutti| Tagga tutti i membri di un gruppo, uso riservato agli admin|
+|Aiuto| Mostra tutti i comandi|
+|Mods| Mostra le informazioni di contatto dei moderatori|
+|Profilo| Mostra un profilo dell'utente taggato o menzionato|
+|Xp| Mostra gli xp dell'utente taggato o menzionato|
 
-|Fun| usage|
+|Intrattenimento| utilizzo|
 |----|--------|
-|Triggered| Tag a photo while commanding, given image would be triggered xD|
-|Chess| Launches a game of chess straight in the group chat, YES THIS IS THE FUTURE! EMBRACE IT!|
-|Famousquote| Will give you a famous random quote|
-|Hug| Hugs the tagged person|
-|In-Love-With| You're in love with the tagged person|
-|Kick| Kicks the tagged person|
-|Kill| Kills the tagged person|
-|Kiss| Kiss the person you tagged|
-|Lick| Licks the tagged person|
-|Pat| Pats the tagged person|
-|Punch| Punch the person you tagged|
-|Quote| Will give you a random quote|
-|Scare| Scares the tagged person|
-|Slap| Slaps the tagged person|
-|Slash| Slashes the tagged person|
-|Why| Will give you a random question|
+|Triggered| Rispondi ad una foto, il risultato sarà la foto triggerata|
+|Chess| Inizia una partita a scacchi!|
+|Citazione| Invierà una citazione famosa a caso|
+|Abbraccio| Abbraccia la persona taggata |
+|Innamorato-di| Sei innamorato della persona taggata|
+|Calcia| Calcia la persona taggata|
+|Uccidi| Uccide la persona taggata|
+|Bacia| Bacia la persona taggata|
+|Lecca| Lecca la persona taggata|
+|Pat| Pats la persona taggata|
+|Colpisci| Colpisce la persona taggata|
+|Citazione| Invia una citazione a caso|
+|Spaventa| Spaventa la persona taggata|
+|Schiaffeggia| Schiaffeggia la persona taggata|
+|Taglia| Taglia la persona taggata|
+|Perché| Ti farà una domanda a caso|
 
-|Misc| usage|
+|Vari| utilizzo|
 |----|--------|
-|Delete| Deletes the quoted message, admin only feature|
-|Hi| Well...|
-|Chitoge| View info|
+|Elimina| Elimina il messaggio quotato, solo admin|
+|Ciao| beh...|
+|Chitoge-ITA| Mostra informazioni|
 
-|Moderation| usage|
+|Moderazione| utilizzo|
 |----|--------|
-Activate| Activates certain bot features in a group chat|
-|Deactivate| Deactivates certain bot features in a group chat|
-|Promote| Promotes the tagged user as a admin on group chat, can be executed only if the one commanding is group admin|
-|Demote| Demotes the tagged user as a standard participant from an admin if he's one. Can work only when commanding user is himself a group admin|
-|Remove| Removes the tagged user from the group, can only work if the bot is an admin and the one commanding this too|
-
-|Utils| usage|
+Attiva| Attiva alcune funzioni del bot in un gruppo|
+|Disattiva| Disattiva alcune funzioni del bot in un gruppo|
+|Rimuovi| Rimuove la persona taggata dal gruppo, funziona solo se il bot è admin e la persona che scrive il comando pure |
+|Utilità| utilizzo|
 |----|--------|
-|Blur| Blurs the tagged image or the pfp of the user's commanding it|
-|Sticker| Converts the given gif/image into a webp sticker|
-|Subred| A random subreddit post based on the specified search would be fetched. (Sometimes nsfw posts can too be fetched so be careful)|
-
-|Weeb| usage|
-|-----------|
-|Anime-opening| Sends you a random anime opening in the form of gif|
-|Anime-ending| Sends you a random anime ending in the form of gif|
-|Loli| Sends you a random anime loli image|
-|Neko| Sends you a random anime neko image|
-|Waifu| Sends you a random waifu image|
-
-|Dev| usage|
+|Sfoca| Sfoca una foto o la foto profilo dell'utente che invia il comando|
+|Sticker| Converte la gif/immagine in uno sticker|
+|Reddit| Invia un post a caso dalla subreddit specificata, attenzione può contenere anche contenuti NSFW!|
+|Weeb| utilizzo|
 |----|--------|
-|Disable| Disables the specified bot command from being used in a group chat|
-|Enable| Enables the specified bot command so that it can be used again in a group chat|
+|Anime-opening| Invia un opening a caso come una gif|
+|Anime-ending| Invia un ending a caso come una gif|
+|Loli| Invia una loli a caso|
+|Neko| Invia una neko a caso|
+|Waifu| Invia una waifu a caso|
+
+|Sviluppatore| utilizzo|
+|----|--------|
+|Disabilita| Disabilita il comando specificato da un gruppo|
+|Enable| Abilita il comando specificato in un gruppo|
 |Eval| Evaluates JavaScript|
-|Ban| Bans the given user from using the bot|
-|Unban| Unbans the given user, after this he/she can use the bot again|
+|Banna| Banna un utente dal bot|
+|Sbanna| Sbanna un utente dal bot|
