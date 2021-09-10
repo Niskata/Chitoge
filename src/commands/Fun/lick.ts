@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'Lick someone!!',
             category: 'fun',
             usage: `${client.config.prefix}lick @whom_you_wanna_lick`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
