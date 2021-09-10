@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'Kick someone!!',
             category: 'fun',
             usage: `${client.config.prefix}kick @whom_you_wanna_kick`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
