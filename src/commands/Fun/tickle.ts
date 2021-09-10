@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'Tickle someone!!',
             category: 'fun',
             usage: `${client.config.prefix}tickle @whom_you_wanna_tickle`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
