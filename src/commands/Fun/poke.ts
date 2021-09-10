@@ -12,7 +12,6 @@ export default class Command extends BaseCommand {
             description: 'Poke someone!!',
             category: 'fun',
             usage: `${client.config.prefix}poke @whom_you_wanna_poke`
-            baseXp: 20
         })
     }
     run = async (M: ISimplifiedMessage): Promise<void> => {
