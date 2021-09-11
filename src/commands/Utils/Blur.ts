@@ -8,7 +8,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'blur',
-            description: 'Sfoca la foto o la foto profilo,
+            description: 'Sfoca la foto o la foto profilo',
             category: 'utils',
             usage: `${client.config.prefix}blur [(as caption | quote)[image] | @mention]`,
             baseXp: 30
