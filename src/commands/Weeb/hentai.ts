@@ -19,7 +19,10 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
 
-
+    if (res.nsfw && !(await this.client.getGroupData(M.from)).nsfw)
+          return void M.reply(
+              `Impossibile mostrare contenuti nsfw prima di abilitarli. Usa ${this.client.config.prefix}activate nsfw per attivare gli nsfw`
+          )
         const rnekol = ["waifu"];
         const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
         const neko = await axios.get('https://api.waifu.pics/nsfw/' + rnekolc)
