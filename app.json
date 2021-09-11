@@ -23,7 +23,7 @@
         "description": "Una password per avere accesso al qr code per collegare il numero di telefono"
       },
       "MODS": {
-        "description": "Il numero di telefono delle persone con il ruolo di moderatori, in formato internazionale senza il "+" e separati da una virgola: \",\")",
+        "description": "Il numero di telefono delle persone con il ruolo di moderatori, in formato internazionale senza il "+" e separati da una virgola: \",\",
         "required": false
       },
       "CRON": {
