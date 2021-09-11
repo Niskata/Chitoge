@@ -1,13 +1,13 @@
-|Admin| utilizzo | 
-|------|--------| 
-|Promuovi |  Promuove un utente ad admin      | 
+|Admin| utilizzo |
+|------|--------|
+|Promuovi |  Promuove un utente ad admin      |
 |Demote |Rimuove il ruolo di admin da un utente  |
 | Remove | Rimuove un utente |  
 
-|Media| utilizzo | 
-|----|--------| 
-|Spotify|  Scarica canzoni da Spotify| 
-|YouTube video |Scarica video da YouTube| 
+|Media| utilizzo |
+|----|--------|
+|Spotify|  Scarica canzoni da Spotify|
+|YouTube video |Scarica video da YouTube|
 |YouTube audio| Scarica audio da YouTube|  |Utils| utilizzo | |-----|--------| |Sticker|  Contiene comandi relativi agli sticker |  #### Send hi to see if the bot is on or not.
 
 |Generali| utilizzo |
@@ -46,7 +46,7 @@
 
 |Moderazione| utilizzo|
 |----|--------|
-Attiva| Attiva alcune funzioni del bot in un gruppo|
+|Attiva| Attiva alcune funzioni del bot in un gruppo|
 |Disattiva| Disattiva alcune funzioni del bot in un gruppo|
 |Rimuovi| Rimuove la persona taggata dal gruppo, funziona solo se il bot è admin e la persona che scrive il comando pure |
 |Utilità| utilizzo|
@@ -54,6 +54,7 @@ Attiva| Attiva alcune funzioni del bot in un gruppo|
 |Sfoca| Sfoca una foto o la foto profilo dell'utente che invia il comando|
 |Sticker| Converte la gif/immagine in uno sticker|
 |Reddit| Invia un post a caso dalla subreddit specificata, attenzione può contenere anche contenuti NSFW!|
+
 |Weeb| utilizzo|
 |----|--------|
 |Anime-opening| Invia un opening a caso come una gif|
