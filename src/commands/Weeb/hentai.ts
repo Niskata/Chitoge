@@ -19,7 +19,7 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
 
-      await this.client.getGroupData(M.from)).nsfw)
+      if (await this.client.getGroupData(M.from)).nsfw)
       return void M.reply(
       `Impossibile mostrare contenuti nsfw prima di abilitarli. Usa ${this.client.config.prefix}activate nsfw per attivare gli nsfw`
                 )
