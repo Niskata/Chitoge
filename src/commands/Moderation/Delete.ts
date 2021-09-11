@@ -7,7 +7,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'delete',
-            description: 'Deletes the quoted Message',
+            description: 'Elimina il messaggio quotato',
             aliases: ['del'],
             category: 'moderation',
             usage: `${client.config.prefix}delete`,
@@ -16,8 +16,8 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        if (!M?.quoted?.message) return void M.reply('Quote the message you want to delete')
-        if (M.quoted.sender !== this.client.user.jid) return void M.reply(`I can only delete the messages sent by me`)
+        if (!M?.quoted?.message) return void M.reply('Rispondi al messaggio che vuoi eliminare')
+        if (M.quoted.sender !== this.client.user.jid) return void M.reply(`Posso eliminare solo i messaggi inviati da me`)
         await this.client.deleteMessage(M.from, {
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             id: (M.quoted.message as any).stanzaId,

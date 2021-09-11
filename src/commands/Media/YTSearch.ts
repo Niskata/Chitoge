@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'yts',
-            description: 'Searches YT',
+            description: 'Cerca su YT',
             category: 'media',
             aliases: ['ytsearch'],
             usage: `${client.config.prefix}yts [term]`,
@@ -18,31 +18,31 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!joined) return void M.reply('🔎 Provide a search term')
+        if (!joined) return void M.reply('🔎 Specifica un termine di ricerca')
         const term = joined.trim()
         const { videos } = await yts(term)
-        if (!videos || videos.length <= 0) return void M.reply(`⚓ No Matching videos found for : *${term}*`)
+        if (!videos || videos.length <= 0) return void M.reply(`⚓ Nessun video trovato per: *${term}*`)
         const length = videos.length < 10 ? videos.length : 10
         let text = `🔎 *Results for ${term}*\n`
         for (let i = 0; i < length; i++) {
-            text += `*#${i + 1}*\n📗 *Title:* ${videos[i].title}\n📕 *Channel:* ${
+            text += `*#${i + 1}*\n📗 *Titolo:* ${videos[i].title}\n📕 *Canale:* ${
                 videos[i].author.name
-            }\n 📙 *Duration:* ${videos[i].duration}\n📘 *URL:* ${videos[i].url}\n\n`
+            }\n 📙 *Durata:* ${videos[i].duration}\n📘 *URL:* ${videos[i].url}\n\n`
         }
-        M.reply('🌟 Searching...')
+        M.reply('🌟 Ricerca...')
         this.client
             .sendMessage(M.from, text, MessageType.extendedText, {
                 quoted: M.WAMessage,
                 contextInfo: {
                     externalAdReply: {
-                        title: `Search Term: ${term}`,
-                        body: `🌟 Chitoge 🌟`,
+                        title: `Termine di ricerca: ${term}`,
+                        body: `🌟 Chitoge-ITA 🌟`,
                         mediaType: 2,
                         thumbnailUrl: videos[0].thumbnail,
                         mediaUrl: videos[0].url
                     }
                 }
             })
-            .catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+            .catch((reason: any) => M.reply(`✖ Errore, motivo: ${reason}`))
     }
 }

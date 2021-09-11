@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             adminOnly: true,
             command: 'open',
-            description: 'Opens the group for all participants.',
+            description: 'Apre il gruppo a tutti i partecipanti.',
             category: 'moderation',
             usage: `${client.config.prefix}open`
         })
@@ -17,10 +17,10 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         if (!M.groupMetadata?.admins?.includes(this.client.user.jid))
-            return void M.reply("I can't open the group without being an admin")
+            return void M.reply("Non posso aprire il gruppo se non sono admin")
             if (M.groupMetadata.announce === "false")
-            return void M.reply("Group is already open")
-  
+            return void M.reply("Il gruppo è già aperto")
+
         this.client.groupSettingChange(M.groupMetadata.id, GroupSettingChange.messageSend, false)
     }
 }

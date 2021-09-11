@@ -8,7 +8,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'fquote',
-            description: 'random famous quote.',
+            description: 'citazione famosa a caso.',
             aliases: ['fq'],
             category: 'fun',
             usage: `${client.config.prefix}fquote`
@@ -19,10 +19,10 @@ export default class Command extends BaseCommand {
         await axios.get(`https://api.quotable.io/random?tags=technology,famous-quotes`)
         .then((response) => {
                 // console.log(response);
-                const text = `📝 *Content:* ${response.data.content}\n\n*✍️ Author:* ${response.data.author}`
+                const text = `📝 *Contenuto:* ${response.data.content}\n\n*✍️ Autore:* ${response.data.author}`
                 M.reply(text);
             }).catch(err => {
-                M.reply(`🔍 Error: ${err}`)
+                M.reply(`🔍 Errore: ${err}`)
             }
             )
     };

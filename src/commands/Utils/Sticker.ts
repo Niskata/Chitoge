@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'sticker',
-            description: 'Converts images/videos into stickers',
+            description: 'Converte immagini/foto in stickers',
             category: 'utils',
             usage: `${client.config.prefix}sticker [(as caption | tag)[video | image]]`,
             baseXp: 30
@@ -22,13 +22,13 @@ export default class Command extends BaseCommand {
             buffer = await this.client.downloadMediaMessage(M.quoted.message)
         else if (M.WAMessage.message?.imageMessage)
             buffer = await this.client.downloadMediaMessage(M.WAMessage)
-        else if (M.quoted?.message?.message?.videoMessage) 
-            return void M.reply(`*Gif/Video to Sticker* feature is currently unavailable.\nYou can still use Image to Sticker though!!`)
+        else if (M.quoted?.message?.message?.videoMessage)
+            return void M.reply(`*Gif/Video to Sticker* non è ancora abilitata.\nPuoi comunque usare il comando con foto statiche!!`)
             // buffer = await this.client.downloadMediaMessage(M.quoted.message)
-        else if (M.WAMessage.message?.videoMessage) 
-            return void M.reply(`*Gif/Video to Sticker* feature is currently unavailable.\nYou can still use Image to Sticker though!!`)
+        else if (M.WAMessage.message?.videoMessage)
+            return void M.reply(`*Gif/Video to Sticker* non è ancora abilitata.\nPuoi comunque usare il comando con foto statiche!!`)
             // buffer = await this.client.downloadMediaMessage(M.WAMessage)
-        if (!buffer) return void M.reply(`You didn't provide any Image/Video to convert`)
+        if (!buffer) return void M.reply(`Non hai specificato alcuna foto/video da convertire`)
         // flags.forEach((flag) => (joined = joined.replace(flag, '')))
         parsedArgs.flags.forEach((flag) => (parsedArgs.joined = parsedArgs.joined.replace(flag, '')))
         const pack = parsedArgs.joined.split('|')
@@ -62,8 +62,8 @@ export default class Command extends BaseCommand {
         })()
         const sticker = new Sticker(buffer, {
             categories,
-            pack: pack[1] || '🌟 Here you go ',
-            author: pack[2] || 'Chitoge 🌟',
+            pack: pack[1] || '🌟 Ecco a te ',
+            author: pack[2] || 'Chitoge/Alessandro 🌟',
             type: parsedArgs.flags.includes('--crop') || parsedArgs.flags.includes('--c') ? 'crop' : parsedArgs.flags.includes('--stretch') || parsedArgs.flags.includes('--s') ? 'default' : 'full'
         })
         await M.reply(await sticker.build(), MessageType.sticker, Mimetype.webp)

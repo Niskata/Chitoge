@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'spotify',
-            description: 'Downloads given spotify track and sends it as Audio',
+            description: 'Scarica una canzone da spotify e la invia come audio',
             category: 'media',
             usage: `${client.config.prefix}spotify [URL]`,
             baseXp: 20,
@@ -19,12 +19,12 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        if (!M.urls.length) return void M.reply(`🔎 Provide the Spotify Track URL that you want to download`)
+        if (!M.urls.length) return void M.reply(`🔎 Specifica l'indirizzo della canzone che vorresti scaricare`)
         const url = M.urls[0]
         const track = new Spotify(url)
         const info = await track.getInfo()
-        if (info.error) return void M.reply(`⚓ Error Fetching: ${url}. Check if the url is valid and try again`)
-        const caption = `🎧 *Title:* ${info.name || ''}\n🎤 *Artists:* ${(info.artists || []).join(',')}\n💽 *Album:* ${
+        if (info.error) return void M.reply(`⚓ Errore ottenendo: ${url}. Controlla se l'indirizzo è giusto e prova di nuovo`)
+        const caption = `🎧 *Titolo:* ${info.name || ''}\n🎤 *Artisti:* ${(info.artists || []).join(',')}\n💽 *Album:* ${
             info.album_name
         }\n📆 *Release Date:* ${info.release_date || ''}`
         M.reply(
@@ -33,9 +33,9 @@ export default class Command extends BaseCommand {
             undefined,
             undefined,
             caption
-        ).catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+        ).catch((reason: any) => M.reply(`✖ Errore, motivo: ${reason}`))
         M.reply(await track.getAudio(), MessageType.audio).catch((reason: any) =>
-            M.reply(`✖ An error occurred, Reason: ${reason}`)
+            M.reply(`✖ Errore, motivo: ${reason}`)
         )
     }
 }

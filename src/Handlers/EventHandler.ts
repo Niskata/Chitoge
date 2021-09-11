@@ -17,13 +17,13 @@ export default class EventHandler {
         if (!data.events) return void null
         const add = event.action === 'add'
         const text = add
-            ? `- ${group.subject || '___'} -\n\n💠 *Group Description:*\n${
+            ? `- ${group.subject || '___'} -\n\n💠 *Descrizione del gruppo:*\n${
                   group.desc
-              }\n\nHope you follow the rules and have fun!\n${event.participants
+              }\n\nSpero che tu segua le regole e che ti diverta!\n${event.participants
                   .map((jid) => `@${jid.split('@')[0]}`)
                   .join(', ')}`
             : event.action === 'remove'
-            ? `Goodbye 👋 @${event.participants[0].split('@')[0]} , we're probably not gonna miss you `
+            ? `Ciao 👋 @${event.participants[0].split('@')[0]} , probabilmente non ci mancherai`
             : `@${event.participants[0].split('@')[0]} got ${this.client.util.capitalize(event.action)}d${
                   event.actor ? ` by @${event.actor.split('@')[0]}` : ''
               }`

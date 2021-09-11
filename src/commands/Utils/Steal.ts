@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'steal',
-            description: 'Steals stickers',
+            description: 'Ruba stickers',
             category: 'utils',
             usage: `${client.config.prefix}steal [(as caption | tag)[video | image]]`,
             baseXp: 30
@@ -17,6 +17,6 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage, parsedArgs: IParsedArgs): Promise<void> => {
-        return void M.reply("Sorry I can't steal from Cute People yet-")
+        return void M.reply("Mi dispiace, non posso ancora rubare da persone cute-")
     }
 }

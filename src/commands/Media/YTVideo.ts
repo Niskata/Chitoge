@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'ytv',
-            description: 'Downloads given YT Video',
+            description: 'Scarica e invia il video YT specificato',
             category: 'media',
             aliases: ['ytvideo'],
             usage: `${client.config.prefix}ytv [URL]`,
@@ -18,15 +18,15 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        if (!M.urls.length) return void M.reply('🔎 Provide the URL of the YT video you want to download')
+        if (!M.urls.length) return void M.reply(`🔎 Specifica l'url del video che vuoi scaricare`)
         const video = new YT(M.urls[0], 'video')
-        if (!video.validateURL()) return void M.reply(`Provide a Valid YT URL`)
+        if (!video.validateURL()) return void M.reply(`Invia un url valido`)
         const { videoDetails } = await video.getInfo()
         M.reply('🌟 Sending...')
         if (Number(videoDetails.lengthSeconds) > 1800)
-            return void M.reply('⚓ Cannot Download videos longer than 30 Minutes')
+            return void M.reply('⚓ Impossibile scaricare video più lunghi di 30 minuti')
         M.reply(await video.getBuffer(), MessageType.video).catch((reason: Error) =>
-            M.reply(`✖ An error occurred, Reason: ${reason}`)
+            M.reply(`✖ Errore, motivo: ${reason}`)
         )
     }
 }

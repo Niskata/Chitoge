@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'subred',
-            description: 'Fetches post from reddit',
+            description: 'Invia post da reddit',
             aliases: ['sr', 'reddit'],
             category: 'utils',
             usage: `${client.config.prefix}subred [subredit_name]`,
@@ -19,13 +19,13 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!joined) return void (await M.reply(`Please provide the subreddit you want to fetch`))
+        if (!joined) return void (await M.reply(`Per favore specifica la subreddit`))
         const response = await redditFetcher(joined.toLowerCase().trim())
-        if ((response as { error: string }).error) return void (await M.reply('Invalid Subreddit'))
+        if ((response as { error: string }).error) return void (await M.reply('Subreddit non trovata o non valida'))
         const res = response as IRedditResponse
         if (res.nsfw && !(await this.client.getGroupData(M.from)).nsfw)
             return void M.reply(
-                `Cannot Display NSFW content before enabling. Use ${this.client.config.prefix}activate nsfw to activate nsfw`
+                `Impossibile mostrare contenuti nsfw prima di abilitarli. Usa ${this.client.config.prefix}activate nsfw per attivare gli nsfw`
             )
         const thumbnail = this.client.assets.get('spoiler')
         const notFound = this.client.assets.get('404')
@@ -41,15 +41,15 @@ export default class Command extends BaseCommand {
         }
         )
         M.reply(
-            buffer || notFound || `Could not fetch image. Please try again later`,
+            buffer || notFound || `Impossibile ottenere l'immagine. Prova più tardi`,
             MessageType.image,
             undefined,
             undefined,
-            `🖌️ *Title: ${res.title}*\n*👨‍🎨 Author: ${res.author}*\n*🎏 Subreddit: ${res.subreddit}*\n🌐 *Post: ${res.postLink}*`,
+            `🖌️ *Titolo: ${res.title}*\n*👨‍🎨 Autore: ${res.author}*\n*🎏 Subreddit: ${res.subreddit}*\n🌐 *Post: ${res.postLink}*`,
             // thumbnail && res.spoiler ? thumbnail : undefined
             undefined
         ).catch(e => {
-            return void M.reply(`Try the Command Again. Error : ${e.message}`)
+            return void M.reply(`Errore. Errore : ${e.message}`)
         })
         return void null
     }

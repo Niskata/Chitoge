@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'loli',
-            description: 'Will send you random loli image.',
+            description: 'Invia una loli a caso.',
             category: 'weeb',
             usage: `${client.config.prefix}loli`
         })

@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'help',
-            description: 'Displays the help menu or shows the info of the command provided',
+            description: 'Mostra il menu help o mostra le informazioni sul comando specificato',
             category: 'general',
             usage: `${client.config.prefix}help (command_name)`,
             aliases: ['menu']
@@ -31,7 +31,7 @@ export default class Command extends BaseCommand {
                     categories[info.config.category].push(info)
                 }
             }
-            let text = `🌟 *Chitoge's Command List* 🌟\n\n`
+            let text = `🌟 *Lista Comandi di ChitogeITA* 🌟\n\n`
             const keys = Object.keys(categories)
             for (const key of keys)
                 text += `${this.emojis[keys.indexOf(key)]} *${this.client.util.capitalize(key)}*\n❐ \`\`\`${categories[
@@ -39,8 +39,8 @@ export default class Command extends BaseCommand {
                 ]
                     .map((command) => command.config?.command)
                     .join(', ')}\`\`\`\n\n`
-            return void M.reply( 
-                `${text} 🗃️ *Note: Use ${this.client.config.prefix}help <command_name> to view the command info*`
+            return void M.reply(
+                `${text} 🗃️ *Nota: Usa ${this.client.config.prefix}help <nome_comando> per vedere le informazioni sul comando*`
             )
         }
         const key = parsedArgs.joined.toLowerCase()
@@ -48,15 +48,15 @@ export default class Command extends BaseCommand {
         if (!command) return void M.reply(`No Command of Alias Found | "${key}"`)
         const state = await this.client.DB.disabledcommands.findOne({ command: command.config.command })
         M.reply(
-            `🌟 *Command:* ${this.client.util.capitalize(command.config?.command)}\n🎗️ *Status:* ${
+            `🌟 *Comando:* ${this.client.util.capitalize(command.config?.command)}\n🎗️ *Stato:* ${
                 state ? 'Disabled' : 'Available'
-            }\n🀄 *Category:* ${this.client.util.capitalize(command.config?.category || '')}${
+            }\n🀄 *Categoria:* ${this.client.util.capitalize(command.config?.category || '')}${
                 command.config.aliases
                     ? `\n🍥 *Aliases:* ${command.config.aliases.map(this.client.util.capitalize).join(', ')}`
                     : ''
-            }\n🃏 *Group Only:* ${this.client.util.capitalize(
+            }\n🃏 *Solo Gruppi:* ${this.client.util.capitalize(
                 JSON.stringify(!command.config.dm ?? true)
-            )}\n🎀 *Usage:* ${command.config?.usage || ''}\n\n🔖 *Description:* ${command.config?.description || ''}`
+            )}\n🎀 *Utilizzo:* ${command.config?.usage || ''}\n\n🔖 *Descrizione:* ${command.config?.description || ''}`
         )
     }
 

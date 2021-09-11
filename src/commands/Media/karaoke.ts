@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'karaoke',
-            description: 'Gives you karaoke song playable on WhatsApp',
+            description: 'Invia un video karaoke',
             category: 'media',
             aliases: ['sing'],
             usage: `${client.config.prefix}karaoke [term]`,
@@ -18,25 +18,25 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!joined) return void M.reply('Please provide a search term')
+        if (!joined) return void M.reply('Specifica un termine di ricerca')
         const term = joined.trim()
         const { videos } = await yts(term + ' karaoke song')
-        if (!videos || videos.length <= 0) return void M.reply(`No Matching videos found for the term *${term}*`)
-        const text = `Via Chitoge🌟`
+        if (!videos || videos.length <= 0) return void M.reply(`Nessun risultato per: *${term}*`)
+        const text = `Via Chitoge-ITA🌟`
 
         this.client
             .sendMessage(M.from, text, MessageType.extendedText, {
                 quoted: M.WAMessage,
                 contextInfo: {
                     externalAdReply: {
-                        title: `Search Term: ${term}`,
-                        body: `🌟Chitoge🌟`,
+                        title: `Termine: ${term}`,
+                        body: `🌟Chitoge-ITA🌟`,
                         mediaType: 2,
                         thumbnailUrl: videos[0].thumbnail,
                         mediaUrl: videos[0].url
                     }
                 }
             })
-            .catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+            .catch((reason: any) => M.reply(`✖ Errore, motivo: ${reason}`))
     }
 }

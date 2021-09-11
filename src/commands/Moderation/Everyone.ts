@@ -7,7 +7,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'everyone',
-            description: 'Tags all users in group chat',
+            description: 'Tagga tutti gli utenti in una chat',
             aliases: ['all', 'tagall'],
             category: 'moderation',
             usage: `${client.config.prefix}everyone`,
@@ -17,10 +17,10 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         return void (await M.reply(
-            `${M.groupMetadata?.subject || 'EVERYONE'}\n*[TAGS HIDDEN]*`,
+            `${M.groupMetadata?.subject || 'EVERYONE'}\n*[TAG NASCOSTE]*`,
             undefined,
             undefined,
             M.groupMetadata?.participants.map((user) => user.jid)
-        ).catch((reason: any) => M.reply(`✖ An error occurred, Reason: ${reason}`)))
+        ).catch((reason: any) => M.reply(`✖ Un errore si è verificato, Motivo: ${reason}`)))
     }
 }

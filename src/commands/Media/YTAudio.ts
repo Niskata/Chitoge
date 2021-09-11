@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'yta',
-            description: 'Downloads given YT Video and sends it as Audio',
+            description: 'Scarica un video da YouTube e lo invia come audio',
             category: 'media',
             aliases: ['ytaudio'],
             usage: `${client.config.prefix}ytv [URL]`,
@@ -18,12 +18,12 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-        if (!M.urls.length) return void M.reply('🔎 Provide the URL of the YT video you want to download')
+        if (!M.urls.length) return void M.reply(`🔎 Specifica l'indirizzo del video che vuoi scaricare`)
         const audio = new YT(M.urls[0], 'audio')
-        if (!audio.validateURL()) return void M.reply(`⚓ Provide a Valid YT URL`)
-        M.reply('🌟 Sending...')
+        if (!audio.validateURL()) return void M.reply(`⚓ Fornisci un indirizzo valido`)
+        M.reply('🌟 Invio in corso...')
         M.reply(await audio.getBuffer(), MessageType.audio).catch((reason: Error) =>
-            M.reply(`✖ An error occurred, Reason: ${reason}`)
+            M.reply(`✖ Errore, motivo: ${reason}`)
         )
     }
 }

@@ -37,21 +37,21 @@ export default class Command extends BaseCommand {
             .reverse()
 
     run = async (M: ISimplifiedMessage, { args }: IParsedArgs): Promise<void> => {
-        const end = async (winner?: 'Black' | 'White' | string) => {
+          const end = async (winner?: 'Nero' | 'Bianco' | string) => {
             const game = this.games.get(M.from)
             const challenge = this.challenges.get(M.from)
             if (!game || !challenge) return void null
             const w = winner?.endsWith('.net')
                 ? winner
-                : winner === 'White'
+                : winner === 'Bianco'
                 ? challenge.challenger
-                : winner === 'Black'
+                : winner === 'Nero'
                 ? challenge.challengee
                 : null
             this.challenges.set(M.from, undefined)
             this.games.set(M.from, undefined)
             this.ongoing.delete(M.from)
-            if (!w) return void this.client.sendMessage(M.from, 'Match Ended in a Draw!', MessageType.text)
+            if (!w) return void this.client.sendMessage(M.from, 'Partita finita in pareggio!', MessageType.text)
             await this.client.setXp(w, 500, 1000)
             if (w)
                 return void this.client.sendMessage(
@@ -59,18 +59,18 @@ export default class Command extends BaseCommand {
                     this.client.assets.get('chess-win') || '',
                     MessageType.video,
                     {
-                        caption: `@${w.split('@')[0]} Won! 🎊`,
+                        caption: `@${w.split('@')[0]} ha vinto! 🎊`,
                         mimetype: Mimetype.gif,
                         contextInfo: { mentionedJid: [w] }
                     }
                 )
         }
         const print = (msg: string) => {
-            if (msg === 'Invalid Move' || msg === 'Not your turn') return void M.reply(msg)
+            if (msg === 'Mossa invalida' || msg === 'Non è il tuo turno') return void M.reply(msg)
             this.client.sendMessage(M.from, msg, MessageType.text)
-            if (msg.includes('stalemate')) return void end()
-            if (msg.includes('wins')) {
-                const winner = msg.includes('Black wins') ? 'Black' : 'White'
+            if (msg.includes('scacco matto')) return void end()
+            if (msg.includes('ha vinto')) {
+                const winner = msg.includes('Nero ha vinto') ? 'Nero' : 'Bianco'
                 return void end(winner)
             }
         }
@@ -80,22 +80,22 @@ export default class Command extends BaseCommand {
                 MessageType.image,
                 undefined,
                 undefined,
-                `♟️ *Chess Commands* ♟️\n\n🎗️ *${this.client.config.prefix}chess challenge* - Challenges the mentioned or quoted person to a chess match\n\n🎀 *${this.client.config.prefix}chess accept* - Accpets the challenge if anyone had challenged you\n\n🔰 *${this.client.config.prefix}chess reject* - Rejects the incomming challenge\n\n💝 *${this.client.config.prefix}chess move [fromTile | 'castle'] [toTile]* - Make a move in the match (refer to the image)\n\n🎋 *${this.client.config.prefix}chess ff* - forfits the match`
+                `♟️ *Comandi scacchi* ♟️\n\n🎗️ *${this.client.config.prefix}chess challenge* - Sfida la persona taggata a scacchi\n\n🎀 *${this.client.config.prefix}chess accept* - Accetta la sfida se qualcuno ti ha sfidato\n\n🔰 *${this.client.config.prefix}chess reject* - Rifiuta la sfida\n\n💝 *${this.client.config.prefix}chess move [fromTile | 'castle'] [toTile]* - Fa una mossa nella partita (riferisciti all'immagine)\n\n🎋 *${this.client.config.prefix}chess ff* - ti arrendi`
             )
         switch (args[0].toLowerCase()) {
             case 'c':
             case 'challenge':
                 const challengee = M.quoted && M.mentioned.length === 0 ? M.quoted.sender : M.mentioned[0] || null
                 if (!challengee || challengee === M.sender.jid)
-                    return void M.reply(`Mention the person you want to challenge`)
+                    return void M.reply(`Menziona la persona che vuoi sfidare`)
                 if (this.ongoing.has(M.from) || this.challenges.get(M.from))
-                    return void M.reply('A Chess session is already going on')
-                if (challengee === this.client.user.jid) return void M.reply(`Challenge someone else`)
+                    return void M.reply('Una partita è già in corso')
+                if (challengee === this.client.user.jid) return void M.reply(`Sfida qualcun'altro`)
                 this.challenges.set(M.from, { challenger: M.sender.jid, challengee })
                 return void M.reply(
-                    `@${M.sender.jid.split('@')[0]} has Challenged @${
+                    `@${M.sender.jid.split('@')[0]} ha sfidato @${
                         challengee.split('@')[0]
-                    } to a chess match. Use *${this.client.config.prefix}chess accept* to start the challenge`,
+                    } a una partita a scacchi. Usa *${this.client.config.prefix}chess accept* per avviare la partita`,
                     MessageType.text,
                     undefined,
                     [challengee || '', M.sender.jid]
@@ -104,11 +104,11 @@ export default class Command extends BaseCommand {
             case 'accept':
                 const challenge = this.challenges.get(M.from)
                 if (challenge?.challengee !== M.sender.jid)
-                    return void M.reply('No one challenged you to a chess match')
+                    return void M.reply('Nessuno ti ha sfidato')
                 this.ongoing.add(M.from)
                 const game = new Game(new EventEmitter(), M.from)
                 await M.reply(
-                    `*Chess Game Started!*\n\n⬜ *White:* @${challenge.challenger.split('@')[0]}\n⬛ *Black:* @${
+                    `*Partita iniziata!*\n\n⬜ *Bianco:* @${challenge.challenger.split('@')[0]}\n⬛ *Nero:* @${
                         challenge.challengee.split('@')[0]
                     }`,
                     MessageType.text,
@@ -134,12 +134,12 @@ export default class Command extends BaseCommand {
             case 'reject':
                 const ch = this.challenges.get(M.from)
                 if (ch?.challengee !== M.sender.jid && ch?.challenger !== M.sender.jid)
-                    return void M.reply('No one challenged you to a chess match')
+                    return void M.reply('Nessuno ti ha sfidato')
                 this.challenges.set(M.from, undefined)
                 return void M.reply(
                     ch.challenger === M.sender.jid
-                        ? `You rejected your challenge`
-                        : `You Rejected @${ch.challenger.split('@')[0]}'s Challenge`,
+                        ? `Hai rifiutato la tua sfida`
+                        : `Hai rifiutato la sfida di @${ch.challenger.split('@')[0]}`,
                     MessageType.text,
                     undefined,
                     [ch.challengee || '', M.sender.jid]

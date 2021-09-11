@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'profile',
-            description: 'Displays user-profile 📜',
+            description: 'Mostra il profilo di un utente 📜',
             category: 'general',
             usage: `${client.config.prefix}profile (@tag)`,
             aliases: ['p']
@@ -28,24 +28,24 @@ export default class Command extends BaseCommand {
         try {
             pfp = await this.client.getProfilePicture(user)
         } catch (err) {
-            M.reply(`Profile Picture not Accessible of ${username}`)
+            M.reply(`Foto profilo di ${username} non accessibile`)
             pfp =
-                'https://i.pinimg.com/736x/ca/e7/8a/cae78ad7f8e6459ad20bde350e2eb78b.jpg'
+                'https://telegra.ph/file/4ccff425eb20c166d0b27.jpg'
         }
         const data = await this.client.getUser(user)
         await M.reply(
             await request.buffer(
                 pfp ||
-                    'https://i.pinimg.com/736x/ca/e7/8a/cae78ad7f8e6459ad20bde350e2eb78b.jpg'
+                    'https://telegra.ph/file/4ccff425eb20c166d0b27.jpg'
             ),
             MessageType.image,
             undefined,
             undefined,
-            `🏮 *Username: ${username}*\n\n🎗 *About: ${
+            `🏮 *Username: ${username}*\n\n🎗 *Info: ${
                 (await this.client.getStatus(user)).status || 'None'
             }*\n\n⭐ *XP: ${data.Xp || 0}*\n\n👑 *Admin: ${
                 M.groupMetadata?.admins?.includes(user) || false
-            }*\n\n❌ *Ban ${data.ban || false}*`
+            }*\n\n❌ *Bannato ${data.ban || false}*`
         )
     }
 }

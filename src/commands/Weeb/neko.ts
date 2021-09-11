@@ -10,7 +10,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'neko',
-            description: 'Will provide you a random anime neko image',
+            description: 'Invia una neko a caso',
             category: 'weeb',
             usage: `${client.config.prefix}neko`
         })
@@ -26,7 +26,7 @@ export default class Command extends BaseCommand {
             MessageType.image,
             undefined,
             undefined,
-            `*🌟 Well...*`
+            `*🌟 Beh...*`
         )
     }
 }

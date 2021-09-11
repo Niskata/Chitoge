@@ -9,7 +9,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             adminOnly: true,
             command: 'close',
-            description: 'Close the group for all participants. Only Admins can message',
+            description: 'Chiude il gruppo per tutti i partecipanti. Solo gli admin possono scrivere',
             category: 'moderation',
             usage: `${client.config.prefix}close`
         })
@@ -17,9 +17,9 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         if (!M.groupMetadata?.admins?.includes(this.client.user.jid))
-            return void M.reply("I can't close the group without being an admin")
+            return void M.reply("Non posso chiudere il gruppo se non sono admin")
         if (M.groupMetadata.announce === "true")
-          return void M.reply("Group is already closed")
+          return void M.reply("Il gruppo è già chiuso")
         this.client.groupSettingChange(M.groupMetadata.id, GroupSettingChange.messageSend, true)
         return
     }

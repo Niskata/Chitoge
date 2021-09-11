@@ -14,7 +14,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'lyrics',
-            description: 'Gives you lyrics with song playable on WhatsApp',
+            description: 'Invia il testo di una canzone',
             category: 'media',
             aliases: ['ly'],
             usage: `${client.config.prefix}yts [term]`,
@@ -23,18 +23,18 @@ export default class Command extends BaseCommand {
         })
     }
     run = async (M: ISimplifiedMessage, { joined }: IParsedArgs): Promise<void> => {
-        if (!joined) return void M.reply('🔎 Provide a search term')
-        const term = joined.trim()       
+        if (!joined) return void M.reply('🔎 Specifica un termine di ricerca')
+        const term = joined.trim()
         // get song from yts
         const { videos } = await yts(term + ' lyrics song')
-        if (!videos || videos.length <= 0) return void M.reply(`⚓ No Matching videos found for the term *${term}*`)
+        if (!videos || videos.length <= 0) return void M.reply(`⚓ Nessun video trovato per il termine: *${term}*`)
 
         const video = videos[0]
         const song = await getSong(term)
-        if (song.error || !song.data) return void M.reply(`✖ Could Not find any Matching songs: *${term}*`)
+        if (song.error || !song.data) return void M.reply(`✖ Impossibile trovare una canzone per: *${term}*`)
         const { error, data } = await getLyrics(song.data)
-        if (error || !data) return void M.reply(`✖ Could Not find any Matching Lyrics: *${song.data.title}*`)
-        this.client.sendMessage(M.from, `*Lyrics of: ${term}*\n\n ${data}`, MessageType.text, {
+        if (error || !data) return void M.reply(`✖ Impossibile trovare un testo per: *${song.data.title}*`)
+        this.client.sendMessage(M.from, `*Testo di: ${term}*\n\n ${data}`, MessageType.text, {
             contextInfo: {
                 externalAdReply: {
                     title: `${song.data.artist.name} - ${song.data.title}`,
@@ -45,6 +45,6 @@ export default class Command extends BaseCommand {
                 },
                 mentionedJid: [M.sender.jid]
             }
-        }).catch((reason: Error) => M.reply(`✖ An error occurred, Reason: ${reason}`))
+        }).catch((reason: Error) => M.reply(`✖ Errore, motivo: ${reason}`))
     }
 }

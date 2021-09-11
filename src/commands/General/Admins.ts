@@ -7,7 +7,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'admins',
-            description: 'Tags all Admins 🎖️',
+            description: 'Tagga tutti gli admin 🎖️',
             category: 'general',
             usage: `${client.config.prefix}admins (Message)`
         })
@@ -15,10 +15,10 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
         return void (await M.reply(
-            `ADMINS!\n[Tags Hidden]`,
+            `ADMIN!\n[TAG NASCOSTE]`,
             undefined,
             undefined,
             M.groupMetadata?.admins
-        ).catch((reason: any) => M.reply(`an error occupered, Reason: ${reason}`)))
+        ).catch((reason: any) => M.reply(`si è verificato un errore, Motivo: ${reason}`)))
     }
 }

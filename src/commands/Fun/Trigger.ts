@@ -11,7 +11,7 @@ export default class Command extends BaseCommand {
     constructor(client: WAClient, handler: MessageHandler) {
         super(client, handler, {
             command: 'trigger',
-            description: 'Triggers you.',
+            description: 'Triggera una foto.',
             aliases: ['triggered'],
             category: 'fun',
             usage: `${client.config.prefix}trigger [image | @mention]`
@@ -69,13 +69,13 @@ export default class Command extends BaseCommand {
             })
             // console.log(sticker)
             // console.log("there")
-            if (!sticker) return void M.reply(`I couldn't find an image to trigger.`)
+            if (!sticker) return void M.reply(`Non trovo un immagine da triggerare.`)
             // console.log("where?")
             return void M.reply(`*Trigger* feature is currently unavailable.`)
             // return void (await M.reply(await sticker.build(), MessageType.sticker, Mimetype.webp))
         } catch (err) {
             console.log(err)
-            M.reply(`Couldn't fetch the required Image.\n*Error* : ${err}`)
+            M.reply(`Impossibile ottenere l'immagine.\n*Errore* : ${err}`)
         }
     }
 }

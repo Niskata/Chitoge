@@ -8,7 +8,7 @@ export default class Command extends BaseCommand {
         super(client, handler, {
             adminOnly: true,
             command: 'purge',
-            description: 'Removes all group members',
+            description: 'Rimuove tutti i membri di un gruppo',
             category: 'moderation',
             usage: `${client.config.prefix}purge`
         })
@@ -19,19 +19,19 @@ export default class Command extends BaseCommand {
             M.groupMetadata?.owner !== M.sender.jid &&
             M.groupMetadata?.owner !== M.sender.jid.replace('s.whatsapp.net', 'c.us')
         )
-            M.reply('Only the group owner can use this command')
+            M.reply('Solo il proprietario del gruppo può usare questo comando')
         if (!M.groupMetadata?.admins?.includes(this.client.user.jid))
             return void M.reply("I can't remove without being an admin")
         if (!this.purgeSet.has(M.groupMetadata?.id || '')) {
             this.addToPurge(M.groupMetadata?.id || '')
             return void M.reply(
-                "Are you sure? This will remove everyone from the group chat. Use this command again if you'd like to proceed"
+                "Sei sicuro? Questo rimuoverà tutti i membri del gruppo. Scrivi di nuovo il comando se vuoi continuare"
             )
         }
         M.groupMetadata.participants.map(async (user) => {
             if (!user.isAdmin) await this.client.groupRemove(M.from, [user.jid])
         })
-        await M.reply('Done!')
+        await M.reply('Fatto!')
         this.client.groupLeave(M.from)
     }
 
