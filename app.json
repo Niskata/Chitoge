@@ -1,6 +1,6 @@
 {
-    "name": "Chitoge-ITA",
-    "description": "Fork Italiana di Chitoge",
+    "name": "Chitoge",
+    "description": "Maintained Fork of Void",
     "keywords": [
       "bot",
       "whatsapp",
@@ -17,24 +17,24 @@
     "success_url": "/",
     "env": {
       "PREFIX": {
-        "description": "Prefisso del tuo bot"
+        "description": "Prefix of your bot"
       },
       "SESSION": {
-        "description": "Una password per avere accesso al qr code per collegare il numero di telefono"
+        "description": "A string for the session to be classified and to get access to the server endpoints"
       },
       "MODS": {
-        "description": "Il numero di telefono delle persone con il ruolo di moderatori, in formato internazionale senza il "+" e separati da una virgola: \",\")",
+        "description": "The phone numbers of the users who you want to be admin for the bot (should be in international format without + and multiple numbers must be separated by a comma \",\")",
         "required": false
       },
       "CRON": {
-        "description": "Stringa cron per pulire le chat periodicamente",
+        "description": "Cron string to clear chats in a cycle",
         "required": false
       },
       "MONGO_URI": {
-        "description": "La stringa segreta per la connessione al database.(Required)"
+        "description": "A secret String for Mongodb Connection.(Required)"
       },
       "GOOGLE_API_KEY": {
-        "description": "API Key Google per abilitare le ricerche, solo per mod. (Not Required)",
+        "description": "Google API key for Google searches for MODS (Not Required)",
         "required": false
       }
     },
@@ -45,7 +45,7 @@
       {
         "url": "https://github.com/PrajjwalDatir/heroku-buildpack-imagemagick.git"
       },
-
+  
       {
         "url": "https://github.com/clhuang/heroku-buildpack-webp-binaries.git"
       },
