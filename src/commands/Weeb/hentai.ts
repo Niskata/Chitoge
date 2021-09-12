@@ -18,7 +18,7 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-      const retries = 0;
+      retries = 0;
       const rnekol = ["waifu"];
       const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
       try {
