@@ -25,7 +25,7 @@ export default class Command extends BaseCommand {
         const res = response as IRedditResponse
         if (res.nsfw && !(await this.client.getGroupData(M.from)).nsfw)
             return void M.reply(
-                `Impossibile mostrare contenuti nsfw prima di abilitarli. Usa ${this.client.config.prefix}activate nsfw per attivare gli nsfw`
+                `Impossibile mostrare contenuti NSFW prima di abilitarli. Usa ${this.client.config.prefix}activate NSFW per attivarli.`
             )
         const thumbnail = this.client.assets.get('spoiler')
         const notFound = this.client.assets.get('404')
@@ -49,7 +49,7 @@ export default class Command extends BaseCommand {
             // thumbnail && res.spoiler ? thumbnail : undefined
             undefined
         ).catch(e => {
-            return void M.reply(`Errore. Errore : ${e.message}`)
+            return void M.reply(`Si è verificato un errore. Motivo: ${e.message}`)
         })
         return void null
     }

@@ -18,16 +18,22 @@ export default class Command extends BaseCommand {
     }
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
-      
+      try {
         const rnekol = ["waifu"];
         const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
         const neko = await axios.get('https://api.waifu.pics/nsfw/' + rnekolc)
-
-return void M.reply(await request.buffer(neko.data.url), MessageType.image, undefined, undefined, `*🌟 Ecco a te, e non abusarne ;)*`)
-
+      }
 
 
-    }
+return void M.reply(await request.buffer(neko.data.url, retries++), MessageType.image, undefined, undefined, `*🌟 Ecco a te, e non abusarne ;)*`)
+
+
+
+} catch (e) {
+  if (retries >= 5) {
+    M.reply(e.message)
+  }
+}
 
 
 
