@@ -24,7 +24,7 @@ export default class Command extends BaseCommand {
         M.mentioned.forEach(async (user) => {
             const usr = this.client.contacts[user]
             const username = usr.notify || usr.vname || usr.name || user.split('@')[0]
-            if (M.groupMetadata?.admins?.includes(user)) M.reply(`✖ Skippato *${username}* perché è già rimosso`)
+            if (M.groupMetadata?.admins?.includes(user)) M.reply(`✖ Skippato *${username}* perché è già rimosso oppure è un amministratore`)
             else {
                 await this.client.groupRemove(M.from, [user])
                 M.reply(`🏌️‍♂️Rimosso con successo *${username}*`)
