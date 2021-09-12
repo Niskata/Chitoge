@@ -19,7 +19,7 @@ export default class Command extends BaseCommand {
 
     run = async (M: ISimplifiedMessage): Promise<void> => {
       try {
-        retries = 0;
+        const retries = 0;
         const rnekol = ["waifu"];
         const rnekolc = rnekol[Math.floor(Math.random() * rnekol.length)];
         const neko = await axios.get('https://api.waifu.pics/nsfw/' + rnekolc)
