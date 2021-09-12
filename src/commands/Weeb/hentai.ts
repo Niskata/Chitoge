@@ -31,7 +31,7 @@ return void M.reply(await request.buffer(neko.data.url, retries++), MessageType.
 
 } catch (e) {
   if (retries >= 5) {
-    M.reply(e.message)
+    M.reply(e.message);
   }
 }
 
